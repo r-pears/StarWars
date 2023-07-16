@@ -25,8 +25,8 @@ model Character {
 model DeckCharacter {
   deckId      Int
   characterId Int
-  deck        Deck      @relation(fields: [deckId], references: [id])
-  character   Character @relation(fields: [characterId], references: [id])
+  deck        Deck      @relation(fields: [deckId], references: [id],  onDelete: Cascade )
+  character   Character @relation(fields: [characterId], references: [id],  onDelete: Cascade)
 
   @@id([deckId, characterId])
 }
