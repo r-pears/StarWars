@@ -4,16 +4,16 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export default async function getAllDecks(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const { title } = req.body;
 
-  try {
-    const decks = await prisma.deck.findMany({
-    })
-    res.status(200).json(decks)
-  } catch (error) {
-    console.log(`Error: ${error}`)
-  }
+  const result = await prisma.deck.create({
+    data: {
+      name: title,
+    },
+  });
+  res.json(result);    
 }
