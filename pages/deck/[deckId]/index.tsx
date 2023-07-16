@@ -13,7 +13,7 @@ const Deck = () => {
     setLoading(true);
 
     async function getDeck() {
-      const endpoint = `/api/deck/${deckId}`; // corrected API endpoint
+      const endpoint = `/api/deck/${deckId}`;
       console.log(deckId);
       const response = await fetch(endpoint);
       const result = await response.json();
@@ -28,6 +28,22 @@ const Deck = () => {
     }
   }, [deckId]);
 
+  const handleDeleteDeck = () => {
+    const deleteMethod = {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
+
+    const url = `/api/deck/${deckId}`;
+
+    fetch(url, deleteMethod)
+      .then((response) => response.json)
+      .catch((err) => console.log(err));
+    router.push("/deck");
+  };
+
   if (isLoading) return <h2>Loading...</h2>;
   if (!deck) return <h2>Cannot find the deck.</h2>;
 
@@ -39,17 +55,17 @@ const Deck = () => {
 
       <div>
         <>
-          {/* {characters.map((character: any) => {
-              return (
-                <div key={character.id}>
-                  <h4>{character.name}</h4>
-                </div>
-              )
-            })} */}
+          {characters.map((character: any) => {
+            return (
+              <div key={character.id}>
+                <h4>{character.name}</h4>
+              </div>
+            );
+          })}
         </>
       </div>
 
-      <button>Delete this deck</button>
+      <button onClick={() => handleDeleteDeck()}>Delete this deck</button>
     </div>
   );
 };
