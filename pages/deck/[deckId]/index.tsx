@@ -94,6 +94,7 @@ const Deck = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    router.reload();
   };
 
   if (isLoading) return <h2>Loading...</h2>;
