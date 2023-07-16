@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,5 +15,5 @@ export default async function handler(
       name: title,
     },
   });
-  res.json(result);    
+  res.json(result);
 }

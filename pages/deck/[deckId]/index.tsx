@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Deck = () => {
   const [deck, setDeck] = useState({} as any);
@@ -9,28 +9,27 @@ const Deck = () => {
   const router = useRouter();
   const { deckId } = router.query;
 
-useEffect(() => {
-  setLoading(true);
+  useEffect(() => {
+    setLoading(true);
 
-  async function getDeck() {
-    const endpoint = `/api/deck/${deckId}` // corrected API endpoint
-    console.log(deckId)
-    const response = await fetch(endpoint);
-    const result = await response.json()
-      
-    setDeck(result)
-    setCharacters(result.characters) // set characters from deck
-    setLoading(false);
-  }
+    async function getDeck() {
+      const endpoint = `/api/deck/${deckId}`; // corrected API endpoint
+      console.log(deckId);
+      const response = await fetch(endpoint);
+      const result = await response.json();
 
-  if(deckId) {
-    getDeck();
-  }
-}, [deckId])
+      setDeck(result);
+      setCharacters(result.characters); // set characters from deck
+      setLoading(false);
+    }
 
+    if (deckId) {
+      getDeck();
+    }
+  }, [deckId]);
 
-  if (isLoading) return <h2>Loading...</h2>
-  if (!deck) return <h2>Cannot find the deck.</h2>
+  if (isLoading) return <h2>Loading...</h2>;
+  if (!deck) return <h2>Cannot find the deck.</h2>;
 
   return (
     <div>
@@ -39,7 +38,7 @@ useEffect(() => {
       <h3>Add your character</h3>
 
       <div>
-          <>
+        <>
           {/* {characters.map((character: any) => {
               return (
                 <div key={character.id}>
@@ -47,15 +46,12 @@ useEffect(() => {
                 </div>
               )
             })} */}
-          </>
-
+        </>
       </div>
 
       <button>Delete this deck</button>
     </div>
-  )  
-}
-
+  );
+};
 
 export default Deck;
-

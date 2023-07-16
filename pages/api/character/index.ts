@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default async function getAllCharacters(
   req: NextApiRequest,
@@ -21,6 +21,11 @@ export default async function getAllCharacters(
     res.status(200).json(characters);
   } catch (error) {
     console.error(`Error: ${error}`);
-    res.status(500).json({ error: "An error occurred while fetching the characters.", details: error });
+    res
+      .status(500)
+      .json({
+        error: "An error occurred while fetching the characters.",
+        details: error,
+      });
   }
 }

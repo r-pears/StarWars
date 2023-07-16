@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export default async function getAllDecks(
   req: NextApiRequest,
@@ -10,17 +10,22 @@ export default async function getAllDecks(
 ) {
   try {
     const decks = await prisma.deck.findMany({
-      include: { 
+      include: {
         characters: {
           include: {
             character: true,
           },
         },
       },
-    })
+    });
     res.status(200).json(decks);
   } catch (error) {
     console.error(`Error: ${error}`);
-    res.status(500).json({ error: "There was an error trying to fetch the decks", details: error });
+    res
+      .status(500)
+      .json({
+        error: "There was an error trying to fetch the decks",
+        details: error,
+      });
   }
 }
