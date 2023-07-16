@@ -11,13 +11,22 @@ datasource db {
 }
 
 model Deck {
-  id         Int         @id @default(autoincrement())
-  name       String      @unique
-  characters Character[]
+  id         Int             @id @default(autoincrement())
+  name       String          @unique
+  characters DeckCharacter[]
 }
 
 model Character {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  deck Deck[]
+  id    Int             @id @default(autoincrement())
+  name  String          @unique
+  decks DeckCharacter[]
+}
+
+model DeckCharacter {
+  deckId      Int
+  characterId Int
+  deck        Deck      @relation(fields: [deckId], references: [id])
+  character   Character @relation(fields: [characterId], references: [id])
+
+  @@id([deckId, characterId])
 }
