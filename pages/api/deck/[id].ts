@@ -58,6 +58,13 @@ export default async function handleRequest(
       // Find the correct deck to update
       const deck = await prisma.deck.findUnique({
         where: { id: numericId },
+        include: {
+          characters: {
+            include: {
+              character: true,
+            },
+          },
+        },
       });
 
       // Return error if deck not found
@@ -88,15 +95,20 @@ export default async function handleRequest(
         return res.status(200).json(updatedDeck);
       } else if (action === "delete") {
         // Delete characters from a deck
-        const updatedDeck = await prisma.deck.update({
-          where: { id: numericId },
-          data: {
-            characters: {
-              delete: characters.map((characterId: number) => ({
+        // Delete characters from a deck
+        await Promise.all(
+          characters.map((characterId: number) =>
+            prisma.deckCharacter.deleteMany({
+              where: {
+                deckId: numericId,
                 characterId: characterId,
-              })),
-            },
-          },
+              },
+            })
+          )
+        );
+
+        const updatedDeck = await prisma.deck.findUnique({
+          where: { id: numericId },
           include: {
             characters: {
               include: {
@@ -105,6 +117,7 @@ export default async function handleRequest(
             },
           },
         });
+
         return res.status(200).json(updatedDeck);
       }
     } catch (error) {
