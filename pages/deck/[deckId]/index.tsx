@@ -28,6 +28,7 @@ const Deck = () => {
       const result = await response.json();
       console.log(result.characters);
       setDeck(result);
+      console.log(result);
       setCharacters(result.characters); // set characters from deck
       setLoading(false);
     }

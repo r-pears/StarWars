@@ -20,6 +20,7 @@ const Decks = () => {
   return (
     <div>
       <h1>All available decks</h1>
+      <Link href={`/deck/new`}>Create a new deck</Link>
       <div>
         {decks.map((deck: any, index: number) => {
           return (
