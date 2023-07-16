@@ -8,15 +8,19 @@ export default async function getAllCharacters(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
   try {
     const characters = await prisma.character.findMany({
       include: {
-        deck: true
-      }
-    })
-    res.status(200).json(characters)
+        decks: {
+          include: {
+            deck: true,
+          },
+        },
+      },
+    });
+    res.status(200).json(characters);
   } catch (error) {
-    console.log(`Error: ${error}`)
+    console.error(`Error: ${error}`);
+    res.status(500).json({ error: "An error occurred while fetching the characters.", details: error });
   }
 }
