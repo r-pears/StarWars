@@ -19,6 +19,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
     "@types/node": "^20.4.2",
     "prisma": "^5.0.0",
     "ts-node": "^10.9.1",
