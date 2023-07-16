@@ -27,8 +27,7 @@ const NewDeck = () => {
       },
       body: JSONdata,
     };
-    const response = await fetch(endpoint, options);
-    const result = await response.json();
+    fetch(endpoint, options).then((response) => response.json());
     router.push("/deck");
   };
 
