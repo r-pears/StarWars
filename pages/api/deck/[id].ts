@@ -9,12 +9,12 @@ export default async function getDeckById(
   res: NextApiResponse
 ) {
 
-  const { id } = req.body;
+  const { id } = req.query;
 
   try {
     const deck = await prisma.deck.findUnique({
       where: {
-        id: id
+        id: Number(id)
       },
       include: {
         characters:true
@@ -23,5 +23,6 @@ export default async function getDeckById(
     res.status(200).json(deck)
   } catch (error) {
     console.log(`Error: ${error}`)
+    res.status(500).send({ error: "An error occurred while fetching the deck." }) // Send back an error response
   }
 }
