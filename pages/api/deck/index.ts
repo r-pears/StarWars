@@ -8,12 +8,19 @@ export default async function getAllDecks(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
   try {
     const decks = await prisma.deck.findMany({
+      include: { 
+        characters: {
+          include: {
+            character: true,
+          },
+        },
+      },
     })
-    res.status(200).json(decks)
+    res.status(200).json(decks);
   } catch (error) {
-    console.log(`Error: ${error}`)
+    console.error(`Error: ${error}`);
+    res.status(500).json({ error: "There was an error trying to fetch the decks", details: error });
   }
 }
