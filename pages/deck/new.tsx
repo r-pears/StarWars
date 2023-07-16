@@ -27,8 +27,11 @@ const NewDeck = () => {
       },
       body: JSONdata,
     };
-    fetch(endpoint, options).then((response) => response.json());
-    router.push("/deck");
+    fetch(endpoint, options)
+      .then((response) => response.json())
+      .then((data) => {
+        router.push("/deck");
+      });
   };
 
   return (

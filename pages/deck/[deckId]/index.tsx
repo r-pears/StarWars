@@ -26,9 +26,7 @@ const Deck = () => {
     async function getDeck() {
       const response = await fetch(url);
       const result = await response.json();
-      console.log(result.characters);
       setDeck(result);
-      console.log(result);
       setCharacters(result.characters); // set characters from deck
       setLoading(false);
     }
@@ -75,6 +73,7 @@ const Deck = () => {
         .then((response) => response.json())
         .then((data) => console.log(data))
         .catch((err) => console.log(err));
+      router.reload();
     }
   };
 

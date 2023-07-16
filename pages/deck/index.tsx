@@ -9,7 +9,6 @@ const Decks = () => {
     fetch("/api/deck")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setDecks(data);
         setLoading(false);
       });
