@@ -1,0 +1,35 @@
+.error {
+  color: #de2c2c;
+}
+
+.form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  background-color: #ffe81f;
+  color: #000;
+  padding: 10px 12px;
+  cursor: pointer;
+  border: #ffe81f 1px solid;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #fcedbb;
+  border-color: #fcedbb;
+}
+
+.label {
+  padding-bottom: 5px;
+}
+
+.input {
+  padding: 5px;
+  border: #ffe81f 1px solid;
+  border-radius: 0 5px;
+  color: #ffe81f;
+}

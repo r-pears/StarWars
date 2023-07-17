@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import newStyles from "./new.module.css";
 
 const NewDeck = () => {
   const [formError, setFormError] = useState(false);
@@ -36,19 +37,24 @@ const NewDeck = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Name</label>
+      <form className={newStyles.form} onSubmit={handleSubmit}>
+        <label className={newStyles.label} htmlFor="title">
+          Name
+        </label>
         <input
           type="text"
           id="title"
           name="title"
+          className={newStyles.input}
           onChange={() => setFormError(false)}
         />
         <div>
-          <button type="submit">Submit</button>
+          <button className={newStyles.button} type="submit">
+            Submit
+          </button>
         </div>
       </form>
-      {formError && <div>Form missing data.</div>}
+      {formError && <div className={newStyles.error}>Form missing data.</div>}
     </div>
   );
 };
