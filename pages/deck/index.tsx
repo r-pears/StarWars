@@ -15,7 +15,7 @@ const Decks = () => {
       });
   }, []);
 
-  if (isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <h2 className={deckStyle.container}>Loading...</h2>;
 
   return (
     <div className={deckStyle.container}>

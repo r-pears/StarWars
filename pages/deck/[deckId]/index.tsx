@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import deckStyle from "./index.module.css";
 
 const Deck = () => {
   const [deck, setDeck] = useState({} as any);
@@ -96,35 +97,59 @@ const Deck = () => {
     router.reload();
   };
 
-  if (isLoading) return <h2>Loading...</h2>;
-  if (!deck) return <h2>Cannot find the deck.</h2>;
+  if (isLoading) return <h2 className={deckStyle.container}>Loading...</h2>;
+  if (!deck)
+    return <h2 className={deckStyle.container}>Cannot find the deck.</h2>;
 
   return (
-    <div>
-      <h1>{deck.name}</h1>
+    <div className={deckStyle.container}>
+      <h1 className={deckStyle.title}>{deck.name}</h1>
 
-      <h3>Add your character</h3>
-      {allCharacters.map((char: any) => {
-        return (
-          <div key={char.id} onClick={() => handleAddToDeck(char.id)}>
-            {char.name}
-          </div>
-        );
-      })}
-
-      <div>
-        {characters.map((character: any) => {
+      <h3 className={deckStyle.add}>Add your character</h3>
+      <div className={deckStyle.availableContainer}>
+        {allCharacters.map((char: any) => {
           return (
-            <div key={character.characterId}>
-              <h4 onClick={() => handleDeleteFromDeck(character.characterId)}>
-                {character.character.name}
-              </h4>
+            <div
+              key={char.id}
+              className={deckStyle.availableName}
+              onClick={() => handleAddToDeck(char.id)}
+            >
+              {char.name}
             </div>
           );
         })}
       </div>
 
-      <button onClick={() => handleDeleteDeck()}>Delete this deck</button>
+      <div>
+        {characters.length > 0 && (
+          <h2 className={deckStyle.inYourDeckTitle}>In your deck:</h2>
+        )}
+        {characters.map((character: any) => {
+          return (
+            <div
+              key={character.characterId}
+              className={deckStyle.characterContainer}
+            >
+              <h4 className={deckStyle.yourCharacter}>
+                {character.character.name}
+              </h4>
+              <div
+                className={deckStyle.characterDelete}
+                onClick={() => handleDeleteFromDeck(character.characterId)}
+              >
+                x
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <button
+        onClick={() => handleDeleteDeck()}
+        className={deckStyle.deckDelete}
+      >
+        Delete this deck
+      </button>
     </div>
   );
 };
