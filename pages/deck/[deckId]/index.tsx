@@ -72,9 +72,11 @@ const Deck = () => {
         }),
       })
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          router.reload();
+        })
+
         .catch((err) => console.log(err));
-      router.reload();
     }
   };
 
@@ -90,11 +92,12 @@ const Deck = () => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        router.reload();
+      })
       .catch((error) => {
         console.error("Error:", error);
       });
-    router.reload();
   };
 
   if (isLoading) return <h2 className={deckStyle.container}>Loading...</h2>;
