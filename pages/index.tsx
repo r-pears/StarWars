@@ -11,7 +11,7 @@ export default function Home() {
       <h1 className={home.title}>
         Create your own deck of Star Wars characters
       </h1>
-      <Image src={swIcon} alt="Star Wars logo" />
+      <Image className={home.image} src={swIcon} alt="Star Wars logo" />
     </div>
   );
 }
