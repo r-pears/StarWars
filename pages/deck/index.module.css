@@ -1,0 +1,31 @@
+.link {
+  border: #ffe81f 1px solid;
+  border-radius: 5px 0;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  text-align: center;
+  max-width: 690px;
+  cursor: pointer;
+}
+
+.link:hover {
+  border-color: #877c55;
+  color: #ffe81f;
+}
+
+.aTag {
+  text-decoration: none;
+}
+
+.container {
+  padding: 30px;
+}
+
+.empty {
+  padding: 10px 0;
+}
+
+.title {
+  color: #ffe81f;
+  padding-bottom: 15px;
+}
