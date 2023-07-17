@@ -2,7 +2,6 @@ import Link from "next/link";
 import navigation from "./navigation.module.css";
 
 const Navigation = ({ currentPath }: { currentPath: string }) => {
-  console.log(currentPath);
   return (
     <div className={navigation.container}>
       <Link
