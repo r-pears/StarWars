@@ -1,0 +1,22 @@
+.link {
+  color: #877c55;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.link:hover {
+  color: #fcedbb;
+}
+
+.link.active {
+  color: #ffe81f;
+  text-decoration: underline;
+}
+
+.container {
+  width: calc(100% - 60px);
+  padding: 30px;
+  display: flex;
+  justify-content: end;
+  text-transform: uppercase;
+}
