@@ -72,9 +72,11 @@ const Deck = () => {
         }),
       })
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          router.reload();
+        })
         .catch((err) => console.log(err));
-      router.reload();
     }
   };
 
